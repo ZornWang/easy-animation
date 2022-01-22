@@ -1,25 +1,32 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import Coordinate from './modules/coordinate/Coordinate';
+import Button from './modules/button/Button';
+import Ball from './modules/ball/Ball';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      transform: 'none'
+    }
+  }
+
+  handleBallTransform(data) {
+    this.setState({
+      transform: data
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Coordinate />
+        <Button ballTransfrom={(data) => this.handleBallTransform(data)} />
+        <Ball ballTrans={this.state.transform} />
+      </div>
+    );
+  }
 }
 
 export default App;
